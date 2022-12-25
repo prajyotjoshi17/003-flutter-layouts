@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      darkTheme: ThemeData.dark(),
       //darkTheme: ThemeData.dark(),
       home: const MyHomePage(title: 'Flutter Layouts'),
     );
@@ -46,13 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
               border: Border.all(width: 10, color: c),
               borderRadius: const BorderRadius.all(Radius.circular(25)),
             ),
-            child: Flexible(
-                flex: 1,
-                child: Center(
-                    child: Text(
-                  i.toString(),
-                  style: const TextStyle(fontSize: 30),
-                ))),
+            child: Center(
+                child: Text(
+              i.toString(),
+              style: const TextStyle(fontSize: 30),
+            )),
           ),
         );
 
@@ -127,24 +126,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    "This is a Flex Wdget",
-                    style: TextStyle(backgroundColor: Colors.deepOrangeAccent),
+                  const Flexible(
+                    child: Text(
+                      "This is a Flex Wdget",
+                      style:
+                          TextStyle(backgroundColor: Colors.deepOrangeAccent),
+                      softWrap: true,
+                    ),
                   ),
-                  const Text(
-                    "It has 3 Text widgets as Childeren",
-                    style: TextStyle(backgroundColor: Colors.greenAccent),
+                  const Flexible(
+                    child: Text(
+                      "It has 3 Text widgets as Childeren",
+                      style: TextStyle(backgroundColor: Colors.greenAccent),
+                    ),
                   ),
-                  const Text(
-                    "Axis can be assigned or \nchanged according to screenSize",
-                    style: TextStyle(
-                        backgroundColor: Color.fromARGB(255, 26, 81, 233)),
+                  const Flexible(
+                    child: Text(
+                      "Axis can be assigned or \nchanged according to screenSize",
+                      style: TextStyle(
+                          backgroundColor: Color.fromARGB(255, 26, 81, 233)),
+                    ),
                   ),
-                  Text(
+                  Flexible(
+                      child: Text(
                     message,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 25),
-                  )
+                    overflow: TextOverflow.clip,
+                  ))
                 ]),
             const Divider(),
             const Text("Standard Layout Widgets",
@@ -182,19 +191,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Divider(),
             const Text("GridView.count"),
-            Flexible(
-              child: GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                children: _buildList(5, Colors.blue),
-              ),
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              children: _buildList(5, Colors.blue),
             ),
             const Divider(),
-            const Flexible(
-              child: Text("Grid View.extent"),
-            ),
+            const Text("Grid View.extent"),
             const Divider(),
             const Text("ListView"),
             Flexible(
@@ -262,41 +267,35 @@ class _MyHomePageState extends State<MyHomePage> {
             Stack(
               alignment: Alignment.center,
               children: [
-                Expanded(
-                  child: Container(
-                    height: 500,
-                    width: 500,
-                    decoration: const BoxDecoration(
-                      color: Colors.redAccent,
-                    ),
-                    child: const Text("Hello"),
+                Container(
+                  height: 500,
+                  width: 500,
+                  decoration: const BoxDecoration(
+                    color: Colors.redAccent,
                   ),
+                  child: const Text("Hello"),
                 ),
-                Expanded(
-                  child: Container(
-                    height: 300,
-                    width: 300,
-                    decoration: const BoxDecoration(
-                        color: Colors.blueAccent,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromARGB(131, 0, 0, 0),
-                              offset: Offset(10, 10))
-                        ]),
-                  ),
+                Container(
+                  height: 300,
+                  width: 300,
+                  decoration: const BoxDecoration(
+                      color: Colors.blueAccent,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromARGB(131, 0, 0, 0),
+                            offset: Offset(10, 10))
+                      ]),
                 ),
-                Expanded(
-                  child: Container(
-                    height: 252,
-                    width: 250,
-                    decoration: const BoxDecoration(
-                        color: Colors.green,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromARGB(131, 0, 0, 0),
-                              offset: Offset(10, 10))
-                        ]),
-                  ),
+                Container(
+                  height: 252,
+                  width: 250,
+                  decoration: const BoxDecoration(
+                      color: Colors.green,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromARGB(131, 0, 0, 0),
+                            offset: Offset(10, 10))
+                      ]),
                 )
               ],
             ),
@@ -311,25 +310,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    TextButton(
-                      onPressed: null,
-                      child: Text(
-                        "SNOOZE",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    TextButton(
+                    Flexible(
+                      child: TextButton(
                         onPressed: null,
                         child: Text(
-                          "TURN OFF",
+                          "SNOOZE",
                           style: TextStyle(color: Colors.blue),
-                        )),
-                    SizedBox(
-                      width: 10,
+                        ),
+                      ),
                     ),
+                    Flexible(
+                      child: SizedBox(
+                        width: 10,
+                      ),
+                    ),
+                    Flexible(
+                      child: TextButton(
+                          onPressed: null,
+                          child: Text(
+                            "TURN OFF",
+                            style: TextStyle(color: Colors.blue),
+                          )),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: 10,
+                      ),
+                    )
                   ],
                 )
               ],
@@ -345,24 +352,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    TextButton(
-                      onPressed: null,
-                      child: Text(
-                        "SNOOZE",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    TextButton(
+                    Flexible(
+                      child: TextButton(
                         onPressed: null,
                         child: Text(
-                          "TURN OFF",
+                          "SNOOZE",
                           style: TextStyle(color: Colors.blue),
-                        )),
-                    SizedBox(
-                      width: 10,
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: 10,
+                      ),
+                    ),
+                    Flexible(
+                      child: TextButton(
+                          onPressed: null,
+                          child: Text(
+                            "TURN ON",
+                            style: TextStyle(color: Colors.blue),
+                          )),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: 10,
+                      ),
                     ),
                   ],
                 )
