@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
+  debugRepaintRainbowEnabled = true;
   runApp(const MyApp());
 }
 
@@ -41,8 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Container> _buildList(int count, Color c) => List.generate(
           count,
           (i) => Container(
-            width: 10,
-            height: 10,
+            width: 5,
+            height: 5,
             decoration: BoxDecoration(
               border: Border.all(width: 10, color: c),
               borderRadius: const BorderRadius.all(Radius.circular(25)),
@@ -126,34 +128,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Flexible(
-                    child: Text(
-                      "This is a Flex Wdget",
-                      style:
-                          TextStyle(backgroundColor: Colors.deepOrangeAccent),
-                      softWrap: true,
-                    ),
+                  const Text(
+                    "This is a Flex Wdget",
+                    style: TextStyle(backgroundColor: Colors.deepOrangeAccent),
+                    softWrap: true,
                   ),
-                  const Flexible(
-                    child: Text(
-                      "It has 3 Text widgets as Childeren",
-                      style: TextStyle(backgroundColor: Colors.greenAccent),
-                    ),
+                  const Text(
+                    "It has 3 Text widgets as Childeren",
+                    style: TextStyle(backgroundColor: Colors.greenAccent),
                   ),
-                  const Flexible(
-                    child: Text(
-                      "Axis can be assigned or \nchanged according to screenSize",
-                      style: TextStyle(
-                          backgroundColor: Color.fromARGB(255, 26, 81, 233)),
-                    ),
+                  const Text(
+                    "Axis can be assigned or \nchanged according to screenSize",
+                    style: TextStyle(
+                        backgroundColor: Color.fromARGB(255, 26, 81, 233)),
                   ),
-                  Flexible(
-                      child: Text(
+                  Text(
                     message,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 25),
                     overflow: TextOverflow.clip,
-                  ))
+                  )
                 ]),
             const Divider(),
             const Text("Standard Layout Widgets",
