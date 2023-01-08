@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ? true
             : false;
     var message = screenSize ? "Axis is vertical" : "Axis is horizontal";
-    List<Container> _buildList(int count, Color c) => List.generate(
+    List<Container> buildList(int count, Color c) => List.generate(
           count,
           (i) => Container(
             width: 5,
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 3,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              children: _buildList(5, Colors.blue),
+              children: buildList(5, Colors.blue),
             ),
             const Divider(),
             const Text("Grid View.extent"),
